@@ -1,2 +1,4 @@
 # practice_backend
-asdasd
+pip install django
+python manage.py runserver
+
