@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 
-class Listings(models.Model):
+class Listing(models.Model):
 
     class SaleType(models.TextChoices):
         PICK_UP = "Available for pickup"

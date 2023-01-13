@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import ListingForm
-from .models import Listings
+from .models import Listing
 
 
 def index(request):
@@ -9,7 +9,7 @@ def index(request):
 
 def all_listings(request):
 
-    all_listings = Listings.objects.order_by('-list_date')
+    all_listings = Listing.objects.order_by('-list_date')
 
     context = {'all_listings': all_listings}
     return render(request, 'listings/all_listings.html', context)
@@ -28,20 +28,20 @@ def new_listing(request):
 
 
 def detail(request, detail_id):
-    detail = Listings.objects.get(id=detail_id)
+    detail = Listing.objects.get(id=detail_id)
 
     context = {'detail': detail}
     return render(request, 'listings/detail.html', context)
 
 
 def my_listings(request):
-    my_listings = Listings.objects.order_by('-list_date')
+    my_listings = Listing.objects.order_by('-list_date')
 
     context = {'my_listings': my_listings}
     return render(request, 'listings/my_listings.html', context)
 
 def edit_listing(request, edit_id):
-    listing = Listings.objects.get(id=edit_id)
+    listing = Listing.objects.get(id=edit_id)
 
     if request.method != 'POST':
         form = ListingForm(instance=listing)
@@ -56,7 +56,7 @@ def edit_listing(request, edit_id):
 
 
 def delete_listing(request, delete_id):
-    listing = Listings.objects.get(id=delete_id)
+    listing = Listing.objects.get(id=delete_id)
 
     if request.method == 'POST':
         listing.delete()
